@@ -10,7 +10,7 @@ node('iOS Node') {
             extensions: [], submoduleCfg: [],
             userRemoteConfigs: [[
                 name: 'github',
-                url: 'https://github.com/mmorejon/time-table.git'
+                url: 'https://github.com/kylelol/time-table.git'
             ]]
         ])
 
