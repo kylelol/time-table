@@ -25,10 +25,16 @@ node('Macbuild') {
         		contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
         		errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
         		statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "pass", state: "SUCCESS"]]]]);
-          notifySuccessful()
+          //notifySuccessful()
       }
     } catch(e) {
-      notifyFailed()
+          step([
+            $class: "GitHubCommitStatusSetter",
+            reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
+            contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+            errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+            statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "pass", state: "SUCCESS"]]]]);
+      //notifyFailed()
     }
 }
 
