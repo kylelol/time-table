@@ -20,7 +20,7 @@ node('Macbuild') {
 
     stage ('Notify') {
         // Send slack notification  
-	step([
+	      step([
       		$class: "GitHubCommitStatusSetter",
       		reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
       		contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
