@@ -1,4 +1,4 @@
-node(‘Macbuild’) {
+node('Macbuild') {
 
     stage('Checkout/Build/Test') {
 
