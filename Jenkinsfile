@@ -17,4 +17,9 @@ node('Macbuild') {
         // Build and Test
         sh 'xcodebuild -scheme "TimeTable" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=10.3.1"'
     }
+
+    stage ('Notify') {
+        // Send slack notification
+        slackSend color: ‘good’, message: 'Time Table - Successfully'
+    }
 }
