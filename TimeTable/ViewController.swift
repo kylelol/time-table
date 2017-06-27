@@ -41,16 +41,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
     }

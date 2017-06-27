@@ -1,11 +1,10 @@
 node('Macbuild') {
   try {
       stage('Checkout/Build/Test') {
-        notifyStarted()
           // Checkout files.
           checkout([
               $class: 'GitSCM',
-              branches: [[name: 'master']],
+              branches: [[name: 'feature/*']],
               doGenerateSubmoduleConfigurations: false,
               extensions: [], submoduleCfg: [],
               userRemoteConfigs: [[
@@ -29,7 +28,7 @@ node('Macbuild') {
           notifySuccessful()
       }
     } catch(e) {
-      notifyFailed
+      notifyFailed()
     }
 }
 
