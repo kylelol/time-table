@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
+        
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
