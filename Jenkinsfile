@@ -20,6 +20,6 @@ node('Macbuild') {
 
     stage ('Notify') {
         // Send slack notification
-        slackSend color: ‘good’, message: 'Time Table - Successfully'
+        slackSend color: 'good', message: 'Message from Jenkins Pipeline'
     }
 }
