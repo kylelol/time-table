@@ -19,7 +19,15 @@ node('Macbuild') {
     }
 
     stage ('Notify') {
-        // Send slack notification
+        // Send slack notification  
+	step([
+      		$class: "GitHubCommitStatusSetter",
+      		reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
+      		contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      		errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+      		statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "pass", state: “SUCCESS"]] ]
+  ]);
+
         slackSend color: 'good', message: 'Message from Jenkins Pipeline'
     }
 }
