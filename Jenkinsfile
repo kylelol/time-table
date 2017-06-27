@@ -33,7 +33,7 @@ node('Macbuild') {
             reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
             contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
             errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-            statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "pass", state: "SUCCESS"]]]]);
+            statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "fail", state: "FAILURE"]]]]);
       //notifyFailed()
     }
 }
