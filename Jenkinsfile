@@ -15,7 +15,6 @@ node('Macbuild') {
         ])
 
         // Build and Test
-        sh 'xcodebuild -scheme "TimeTable" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=10.3.1"
-
+        sh 'xcodebuild -scheme "TimeTable" -configuration "Debug" build test -destination "platform=iOS Simulator,name=iPhone 6,OS=10.3.1"'
     }
 }
