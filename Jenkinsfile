@@ -1,6 +1,4 @@
 node('Macbuild') {
-
-  stages {
     try {
         stage('Checkout') {
           checkoutRepo()
@@ -22,7 +20,6 @@ node('Macbuild') {
         //notifyFailed()
     }
   }
-}
 
 def notifyGithub(state) {
   step([
