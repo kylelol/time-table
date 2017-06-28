@@ -7,27 +7,22 @@ node('Macbuild') {
           buildXcodeProject()
         }
         stage ('Notify') {
-          notifyGithub("SUCCESS")
+          notifyGithub("pass", "SUCCESS")
           notifySuccessful()
         }
       } catch(e) {
-            step([
-              $class: "GitHubCommitStatusSetter",
-              reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
-              contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
-              errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-              statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "fail", state: "FAILURE"]]]]);
-        //notifyFailed()
+        notifyGithub("fail", "FAILURE")
+        notifyFailed()
     }
   }
 
-def notifyGithub(state) {
+def notifyGithub(message, state) {
   step([
   $class: "GitHubCommitStatusSetter",
   reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/kylelol/time-table.git"],
   contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
   errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-  statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: "pass", state: state]]]]);
+  statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]]]]);
 }
 
 def buildXcodeProject() {
